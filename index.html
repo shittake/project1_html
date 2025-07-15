@@ -1,67 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="ISO-8859-1">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-          crossorigin="anonymous">
+<meta charset="ISO-8859-1">
+<title>Dashboard</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      crossorigin="anonymous">
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const deleteButtons = document.querySelectorAll("#delete-button");
+    deleteButtons.forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        const row = btn.closest("tr");
+        if (row) {
+          row.style.display = "none";
+          const editBtn = row.querySelector("#edit-button");
+          const deleteBtn = row.querySelector("#delete-button");
+          if (editBtn) editBtn.removeAttribute("id");
+          if (deleteBtn) deleteBtn.removeAttribute("id");
+        }
+      });
+    });
+  });
+</script>
 </head>
 <body>
-<div class="row"> 
-    <div class="container">
-        <h3 class="text-center">List of Users</h3>
-        <hr>
-        <div class="container text-left">
-            <!-- Add new user button -->
-            <a id="add-button" href="register.html" class="btn btn-success">Add New User</a>
-        </div>
-        <br>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Password</th>
-                    <th>Email</th>
-                    <th>Language</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Dummy user entries -->
-                <tr>
-                    <td>Alice</td>
-                    <td>pass123</td>
-                    <td>alice@example.com</td>
-                    <td>English</td>
-                    <td>
-                        <a id="edit-button" href="edit.html?name=Alice">Edit</a> &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a id="delete-button" href="delete.html?name=Alice">Delete</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Bob</td>
-                    <td>secret</td>
-                    <td>bob@example.com</td>
-                    <td>Mandarin</td>
-                    <td>
-                        <a id="edit-button" href="edit.html?name=Bob">Edit</a> &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a id="delete-button" href="delete.html?name=Bob">Delete</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Charlie</td>
-                    <td>hunter2</td>
-                    <td>charlie@example.com</td>
-                    <td>Malay</td>
-                    <td>
-                        <a id="edit-button" href="edit.html?name=Charlie">Edit</a> &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a id="delete-button" href="delete.html?name=Charlie">Delete</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+  <div class="container mt-4">
+    <h3 class="text-center">List of Users</h3>
+    <hr>
+    <div class="text-left mb-3">
+      <a id="add-button" href="register.html" class="btn btn-success">Add New User</a>
     </div>
-</div>
+    <table class="table table-bordered table-striped">
+      <thead class="thead-light">
+        <tr>
+          <th>Name</th>
+          <th>Password</th>
+          <th>Email</th>
+          <th>Language</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Alice</td>
+          <td>pass123</td>
+          <td>alice@example.com</td>
+          <td>English</td>
+          <td>
+            <a id="edit-button" href="edit.html?name=Alice&password=pass123&email=alice@example.com&language=English" class="btn btn-primary btn-sm">Edit</a>
+            <button id="delete-button" class="btn btn-danger btn-sm">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Bob</td>
+          <td>secret456</td>
+          <td>bob@example.com</td>
+          <td>Spanish</td>
+          <td>
+            <a id="edit-button" href="edit.html?name=Bob&password=secret456&email=bob@example.com&language=Spanish" class="btn btn-primary btn-sm">Edit</a>
+            <button id="delete-button" class="btn btn-danger btn-sm">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Carol</td>
+          <td>mypassword</td>
+          <td>carol@example.com</td>
+          <td>French</td>
+          <td>
+            <a id="edit-button" href="edit.html?name=Carol&password=mypassword&email=carol@example.com&language=French" class="btn btn-primary btn-sm">Edit</a>
+            <button id="delete-button" class="btn btn-danger btn-sm">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>

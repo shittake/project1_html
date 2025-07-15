@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit User (Static Dummy Form)</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      crossorigin="anonymous">
+<style>
+  #message {
+    margin-top: 15px;
+    color: green;
+    font-weight: bold;
+  }
+</style>
+<script>
+  function getQueryParams() {
+    const params = {};
+    const queryString = window.location.search.substring(1);
+    queryString.split("&").forEach(pair => {
+      const [key, value] = pair.split("=");
+      if (key) {
+        params[decodeURIComponent(key)] = decodeURIComponent(value || '');
+      }
+    });
+    return params;
+  }
+
+  function prefillForm() {
+    const params = getQueryParams();
+    document.getElementById('name-field').value = params.name || '';
+    document.getElementById('password-field').value = params.password || '';
+    document.getElementById('email-field').value = params.email || '';
+    document.getElementById('language-field').value = params.language || '';
+  }
+
+  function dummySubmit(event) {
+    event.preventDefault();
+    const name = document.getElementById('name-field').value.trim();
+    const email = document.getElementById('email-field').value.trim();
+    const msg = document.getElementById('message');
+
+    if (name && email) {
+      msg.style.color = 'green';
+      msg.textContent = `User "${name}" with email "${email}" has been updated (dummy).`;
+    } else {
+      msg.style.color = 'red';
+      msg.textContent = 'Please enter both name and email.';
+    }
+  }
+
+  window.onload = prefillForm;
+</script>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">User Management Application</a>
+  </div>
+</nav>
+
+<div class="container col-md-6 mt-4">
+  <div class="card">
+    <div class="card-body">
+      <h2>Edit User</h2>
+      <form onsubmit="dummySubmit(event)">
+        <fieldset class="form-group">
+          <label>User Name</label>
+          <input type="text" id="name-field" class="form-control" name="userName" required>
+        </fieldset>
+        <fieldset class="form-group">
+          <label>Password</label>
+          <input type="text" id="password-field" class="form-control" name="password">
+        </fieldset>
+        <fieldset class="form-group">
+          <label>User Email</label>
+          <input type="text" id="email-field" class="form-control" name="email">
+        </fieldset>
+        <fieldset class="form-group">
+          <label>Language</label>
+          <input type="text" id="language-field" class="form-control" name="language">
+        </fieldset>
+        <button type="submit" class="btn btn-success">Save</button>
+      </form>
+      <div id="message"></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
