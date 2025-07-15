@@ -12,7 +12,7 @@
 </style>
 <script>
   function dummySubmit(event) {
-    event.preventDefault(); // prevent actual form submission
+    event.preventDefault();
 
     const name = document.getElementById('name-field').value.trim();
     const email = document.getElementById('email-field').value.trim();
@@ -20,9 +20,6 @@
 
     if (name && email) {
       msg.textContent = `User "${name}" with email "${email}" has been added.`;
-    } else {
-      msg.textContent = 'Please enter both name and email.';
-      msg.style.color = 'red';
     }
   }
 </script>
