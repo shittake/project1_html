@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Add New User (Static Dummy Form)</title>
+<style>
+  #message {
+    margin-top: 15px;
+    color: green;
+    font-weight: bold;
+  }
+</style>
+<script>
+  function dummySubmit(event) {
+    event.preventDefault(); // prevent actual form submission
+
+    const name = document.getElementById('name-field').value.trim();
+    const email = document.getElementById('email-field').value.trim();
+    const msg = document.getElementById('message');
+
+    if (name && email) {
+      msg.textContent = `User "${name}" with email "${email}" has been added.`;
+    } else {
+      msg.textContent = 'Please enter both name and email.';
+      msg.style.color = 'red';
+    }
+  }
+</script>
+</head>
+<body>
+  <form onsubmit="dummySubmit(event)">
+    Name: <input id="name-field" type="text" name="userName"><br>
+    Password: <input id="password-field" type="password" name="password"><br>
+    Email: <input id="email-field" type="text" name="email"><br>
+    Language:
+    <select name="language">
+      <option>English</option>
+      <option>Spanish</option>
+      <option>French</option>
+    </select><br><br>
+    <input id="submit-button" type="submit" value="Submit (No action)" />
+  </form>
+  <div id="message"></div>
+</body>
+</html>
